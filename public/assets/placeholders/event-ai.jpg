@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1020" />
+      <stop offset="50%" stop-color="#10182D" />
+      <stop offset="100%" stop-color="#0E1428" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6845F5" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#6845F5" stop-opacity="0.4" />
+    </linearGradient>
+    <pattern id="cyberGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(104, 69, 245, 0.08)" stroke-width="1"/>
+    </pattern>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background base -->
+  <rect width="800" height="500" fill="url(#bg)" />
+  <rect width="800" height="500" fill="url(#cyberGrid)" />
+
+  <!-- Ambient Light Orbs -->
+  <circle cx="150" cy="120" r="140" fill="#6845F5" opacity="0.12" filter="url(#glow)" />
+  <circle cx="680" cy="380" r="160" fill="#6845F5" opacity="0.1" filter="url(#glow)" />
+
+  <!-- Tech Frame Borders -->
+  <rect x="25" y="25" width="750" height="450" rx="16" fill="none" stroke="rgba(104, 69, 245, 0.2)" stroke-width="1.5" />
+  <rect x="35" y="35" width="730" height="430" rx="12" fill="rgba(16, 24, 45, 0.4)" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+
+  <!-- Corner Brackets -->
+  <path d="M 25 55 L 25 25 L 55 25" fill="none" stroke="#6845F5" stroke-width="3" />
+  <path d="M 775 55 L 775 25 L 745 25" fill="none" stroke="#6845F5" stroke-width="3" />
+  <path d="M 25 445 L 25 475 L 55 475" fill="none" stroke="#6845F5" stroke-width="3" />
+  <path d="M 775 445 L 775 475 L 745 475" fill="none" stroke="#6845F5" stroke-width="3" />
+
+  <!-- Infinity Watermark in Background -->
+  <path d="M 330 250 C 330 210, 260 210, 260 250 C 260 290, 330 290, 400 250 C 470 210, 540 210, 540 250 C 540 290, 470 290, 400 250 C 350 220, 330 250, 330 250" 
+        fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="14" stroke-linecap="round" />
+
+  <!-- Top Badge -->
+  <rect x="60" y="55" width="230" height="30" rx="6" fill="rgba(11, 16, 32, 0.9)" stroke="rgba(104, 69, 245, 0.3)" />
+  <circle cx="75" cy="70" r="4" fill="#6845F5" />
+  <text x="88" y="74" fill="#F5F4FF" font-family="monospace" font-size="11" letter-spacing="1.5" font-weight="600">ARTIFICIAL INTELLIGENCE ARCHIVE</text>
+
+  <!-- Central Graphic Icon -->
+  <g transform="translate(360, 140)" filter="url(#glow)">
+    <circle cx="40" cy="40" r="45" fill="rgba(16, 24, 45, 0.8)" stroke="#6845F5" stroke-width="2" />
+    <rect x="26" y="26" width="28" height="28" rx="4" fill="none" stroke="#55A6AC" stroke-width="3"/>
+        <path d="M 34 20 L 34 26 M 46 20 L 46 26 M 34 54 L 34 60 M 46 54 L 46 60 M 20 34 L 26 34 M 20 46 L 26 46 M 54 34 L 60 34 M 54 46 L 60 46" stroke="#55A6AC" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Title & Subtext -->
+  <text x="400" y="295" fill="#FFFFFF" font-family="sans-serif" font-weight="800" font-size="28" text-anchor="middle" letter-spacing="-0.5">AI Tools & Developer Productivity</text>
+  <text x="400" y="330" fill="rgba(245, 244, 255, 0.75)" font-family="sans-serif" font-weight="400" font-size="15" text-anchor="middle">Exploring LLM Pipelines & Machine Learning Paradigms</text>
+
+  <!-- Status / Verification Footer -->
+  <rect x="190" y="385" width="420" height="34" rx="17" fill="rgba(11, 16, 32, 0.85)" stroke="rgba(255, 255, 255, 0.1)" />
+  <text x="400" y="407" fill="rgba(245, 244, 255, 0.6)" font-family="monospace" font-size="11" text-anchor="middle" letter-spacing="1">
+    [ PLACEHOLDER // PENDING EVENT PHOTOGRAPHY ]
+  </text>
+</svg>

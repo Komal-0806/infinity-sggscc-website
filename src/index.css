@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --bg-midnight: #0B1020;
+  --bg-navy: #10182D;
+  --primary-purple: #3020A5;
+  --electric-violet: #6845F5;
+  --accent-teal: #55A6AC;
+  --accent-crimson: #E32655;
+  --text-offwhite: #F5F4FF;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B1020;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a233d;
+  border-radius: 4px;
+  border: 1px solid rgba(104, 69, 245, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3020A5;
+}
+
+/* Base Body Styles */
+body {
+  background-color: #0B1020;
+  color: #F5F4FF;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Typography Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', 'Space Grotesk', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-mono-tech {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.font-script-society {
+  font-family: 'Caveat', cursive;
+}
+
+/* Futuristic Grid Floor matching LinkedIn Banner */
+.perspective-grid-floor {
+  background-image: 
+    linear-gradient(to right, rgba(104, 69, 245, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(104, 69, 245, 0.12) 1px, transparent 1px);
+  background-size: 50px 50px;
+  transform: perspective(600px) rotateX(60deg);
+  transform-origin: center bottom;
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,1) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,1) 100%);
+}
+
+/* Ambient glow utility classes */
+.glow-teal {
+  box-shadow: 0 0 25px rgba(85, 166, 172, 0.35);
+}
+
+.glow-crimson {
+  box-shadow: 0 0 25px rgba(227, 38, 85, 0.35);
+}
+
+.glow-violet {
+  box-shadow: 0 0 35px rgba(104, 69, 245, 0.4);
+}
+
+.text-glow-white {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.7), 0 0 40px rgba(104, 69, 245, 0.4);
+}
+
+/* Cyber card borders */
+.cyber-card {
+  background: linear-gradient(135deg, rgba(16, 24, 45, 0.85) 0%, rgba(11, 16, 32, 0.95) 100%);
+  border: 1px solid rgba(104, 69, 245, 0.18);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cyber-card:hover {
+  border-color: rgba(104, 69, 245, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(48, 32, 165, 0.4), 0 0 20px 2px rgba(85, 166, 172, 0.1);
+  transform: translateY(-4px);
+}
+
+/* Focus states for accessibility */
+*:focus-visible {
+  outline: 2px solid #6845F5;
+  outline-offset: 3px;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
