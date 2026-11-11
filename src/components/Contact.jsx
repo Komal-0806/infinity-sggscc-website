@@ -11,7 +11,9 @@ import {
   Copy, 
   Sparkles, 
   GraduationCap,
-  Info 
+  Info,
+  AlertCircle,
+  Loader2
 } from 'lucide-react';
 import { societyInfo, faqs } from '../data/societyData';
 
@@ -23,25 +25,91 @@ export default function Contact() {
     subject: '',
     message: '',
   });
+
+  const [formStatus, setFormStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error' | 'ready_to_send'
+  const [statusMessage, setStatusMessage] = useState('');
   const [isCopied, setIsCopied] = useState(false);
-  const [feedbackSent, setFeedbackSent] = useState(false);
+
+  // Formspree / external endpoint from environment variables
+  const formEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT || import.meta.env.VITE_CONTACT_ENDPOINT;
 
   const toggleFaq = (index) => {
     setActiveFaq(activeFaq === index ? null : index);
   };
 
-  const handleSubmit = (e) => {
+  const validateForm = () => {
+    if (!formData.name.trim()) return 'Please enter your full name.';
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email.trim())) return 'Please provide a valid email address.';
+    if (!formData.subject.trim()) return 'Please enter a subject.';
+    if (formData.message.trim().length < 10) return 'Message must be at least 10 characters long.';
+    return null;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
-    setFeedbackSent(true);
+    if (formStatus === 'loading') return; // Prevent duplicate submissions
+
+    const validationError = validateForm();
+    if (validationError) {
+      setFormStatus('error');
+      setStatusMessage(validationError);
+      return;
+    }
+
+    // If a genuine endpoint is configured in environment variables
+    if (formEndpoint) {
+      setFormStatus('loading');
+      setStatusMessage('');
+
+      try {
+        const response = await fetch(formEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            subject: formData.subject.trim(),
+            message: formData.message.trim(),
+            society: "INFINITY SGGSCC",
+          })
+        });
+
+        if (response.ok) {
+          setFormStatus('success');
+          setStatusMessage('Your inquiry has been successfully transmitted to the INFINITY team!');
+          setFormData({ name: '', email: '', subject: '', message: '' });
+        } else {
+          const errData = await response.json().catch(() => ({}));
+          setFormStatus('error');
+          setStatusMessage(errData.error || 'Failed to dispatch message. Please use the direct email fallback.');
+        }
+      } catch (err) {
+        setFormStatus('error');
+        setStatusMessage('Network error occurred while sending. Please use the email client fallback below.');
+      }
+    } else {
+      // If endpoint is not configured, avoid fake claims.
+      // Transition to genuine client-side dispatch state with mailto / copy options.
+      setFormStatus('ready_to_send');
+    }
   };
 
   const handleCopyMessage = () => {
-    const textToCopy = `From: ${formData.name} (${formData.email})\nSubject: ${formData.subject}\n\n${formData.message}`;
-    navigator.clipboard.writeText(textToCopy);
+    const formatted = `From: ${formData.name.trim()} (${formData.email.trim()})\nSubject: ${formData.subject.trim()}\n\n${formData.message.trim()}\n\n[Inquiry via INFINITY SGGSCC Website]`;
+    navigator.clipboard.writeText(formatted);
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2500);
   };
+
+  const mailtoUrl = `mailto:?subject=${encodeURIComponent(
+    `[INFINITY SGGSCC Inquiry] ${formData.subject || 'Collaboration'}`
+  )}&body=${encodeURIComponent(
+    `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\n(Sent via INFINITY Official Website)`
+  )}`;
 
   return (
     <section id="contact" className="relative py-24 bg-[#0E1428] border-t border-slate-800/80">
@@ -57,14 +125,14 @@ export default function Contact() {
             Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#55A6AC] via-[#6845F5] to-[#E32655]">Touch</span>
           </h2>
           <p className="text-slate-400 text-sm sm:text-base font-sans leading-relaxed">
-            Have questions regarding upcoming hackathons, tech workshops, or society collaboration? Reach out to INFINITY.
+            Have questions regarding upcoming hackathons, tech workshops, society recruitment or sponsorship collaborations?
           </p>
         </div>
 
-        {/* Content Layout: Contact Cards & Interactive Inquiry Composer */}
+        {/* Content Layout: Contact Information & Functional Form */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20">
           
-          {/* Left Column: Official College & Social Connect Info (5 cols) */}
+          {/* Left Column: Official College & Verified Social Handles (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             
             {/* College & Campus Card */}
@@ -106,9 +174,9 @@ export default function Contact() {
 
             {/* Official Social Media Hub */}
             <div className="p-6 rounded-2xl bg-[#10182D]/90 border border-slate-800 shadow-xl">
-              <h3 className="text-base font-bold text-white mb-2">Official Social Handles</h3>
+              <h3 className="text-base font-bold text-white mb-2">Verified Social Channels</h3>
               <p className="text-xs text-slate-400 mb-4">
-                Follow our verified social accounts for instant event updates, registration deadlines, and live announcements.
+                Connect directly with the society on LinkedIn and Instagram for the fastest response on events and recruitment.
               </p>
 
               <div className="space-y-3">
@@ -160,13 +228,13 @@ export default function Contact() {
             <div className="p-4 rounded-xl bg-[#0B1020] border border-slate-800 text-xs text-slate-400 flex items-start gap-2.5">
               <Info className="w-4 h-4 text-[#55A6AC] shrink-0 mt-0.5" />
               <span>
-                To protect institutional authenticity, personal contact numbers and unverified email inboxes are not published. Inquiries are directed via official channels.
+                To maintain institutional authenticity, unverified personal phone numbers or private email accounts are not published.
               </span>
             </div>
 
           </div>
 
-          {/* Right Column: Interactive Inquiry Composer (7 cols) */}
+          {/* Right Column: Contact Form & Integration Handlers (7 cols) */}
           <div className="lg:col-span-7">
             <div className="p-6 sm:p-8 rounded-2xl bg-[#10182D]/90 border border-slate-800 shadow-xl h-full flex flex-col justify-between">
               <div>
@@ -178,52 +246,86 @@ export default function Contact() {
                     </h3>
                   </div>
                   <span className="text-[11px] font-mono text-slate-400">
-                    Client-Side Direct Dispatch
+                    {formEndpoint ? 'API Direct Connected' : 'Direct Dispatch'}
                   </span>
                 </div>
 
                 <p className="text-xs text-slate-300 mb-6 leading-relaxed">
-                  Draft your message below. You can send it directly through your system's default email client, or copy the formatted text to send via LinkedIn or Instagram.
+                  Have an event proposal, sponsorship inquiry or technical question? Fill out the details below.
                 </p>
 
-                {feedbackSent ? (
-                  <div className="p-6 rounded-xl bg-[#0B1020] border border-emerald-500/30 text-center space-y-3 my-4">
+                {/* State 1: Genuine Success (when endpoint configured and API responds 200) */}
+                {formStatus === 'success' && (
+                  <div className="p-6 rounded-2xl bg-[#0B1020] border border-emerald-500/40 text-center space-y-3 my-4">
                     <div className="w-12 h-12 mx-auto rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
                       <CheckCircle2 className="w-6 h-6" />
                     </div>
-                    <h4 className="text-base font-bold text-white">Draft Ready for Transmission</h4>
+                    <h4 className="text-base font-bold text-white">Inquiry Dispatched Successfully!</h4>
                     <p className="text-xs text-slate-300 max-w-md mx-auto">
-                      Your inquiry has been formatted. Choose how you would like to deliver it:
+                      {statusMessage}
                     </p>
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-3">
+                    <button
+                      onClick={() => setFormStatus('idle')}
+                      className="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-[#6845F5]"
+                    >
+                      Send Another Message
+                    </button>
+                  </div>
+                )}
+
+                {/* State 2: Ready to Send / Verified Fallback (when no backend endpoint configured) */}
+                {formStatus === 'ready_to_send' && (
+                  <div className="p-6 rounded-2xl bg-[#0B1020] border border-[#6845F5]/40 text-center space-y-4 my-4">
+                    <div className="w-12 h-12 mx-auto rounded-full bg-[#6845F5]/20 text-[#6845F5] flex items-center justify-center">
+                      <Mail className="w-6 h-6" />
+                    </div>
+                    <h4 className="text-base font-bold text-white">Inquiry Formatted & Ready</h4>
+                    <p className="text-xs text-slate-300 max-w-md mx-auto">
+                      Choose how you would like to transmit your inquiry to the INFINITY team:
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+                      <a
+                        href={mailtoUrl}
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-[#3020A5] to-[#6845F5] hover:opacity-95 shadow-md shadow-[#6845F5]/25"
+                      >
+                        <Send className="w-3.5 h-3.5" />
+                        <span>Launch in Default Email App</span>
+                      </a>
+
                       <button
                         onClick={handleCopyMessage}
                         type="button"
-                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-slate-800 hover:bg-slate-700 border border-slate-700"
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700"
                       >
                         <Copy className="w-3.5 h-3.5" />
                         <span>{isCopied ? 'Copied to Clipboard!' : 'Copy Formatted Text'}</span>
                       </button>
+                    </div>
 
-                      <a
-                        href={`mailto:infinity@sggscc.du.ac.in?subject=${encodeURIComponent(formData.subject || 'INFINITY Tech Society Inquiry')}&body=${encodeURIComponent(formData.message + '\n\nSender: ' + formData.name + ' (' + formData.email + ')')}`}
-                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-[#3020A5] to-[#6845F5]"
-                      >
-                        <Send className="w-3.5 h-3.5" />
-                        <span>Open in Email App</span>
-                      </a>
+                    <div className="text-[11px] font-mono text-slate-400 pt-2">
+                      <span>Pro-tip: You can also paste the copied text directly to our Instagram DM or LinkedIn page.</span>
                     </div>
-                    <div className="pt-2">
-                      <button
-                        onClick={() => setFeedbackSent(false)}
-                        className="text-xs text-slate-400 hover:text-white underline"
-                      >
-                        Edit Inquiry
-                      </button>
-                    </div>
+
+                    <button
+                      onClick={() => setFormStatus('idle')}
+                      className="text-xs text-slate-400 hover:text-white underline block mx-auto"
+                    >
+                      ← Back to form editor
+                    </button>
                   </div>
-                ) : (
+                )}
+
+                {/* State 3: Active Form (when idle, loading, or error) */}
+                {(formStatus === 'idle' || formStatus === 'loading' || formStatus === 'error') && (
                   <form onSubmit={handleSubmit} className="space-y-4">
+                    {formStatus === 'error' && (
+                      <div className="flex items-center gap-2 p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-xs text-red-300">
+                        <AlertCircle className="w-4 h-4 shrink-0" />
+                        <span>{statusMessage}</span>
+                      </div>
+                    )}
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-xs font-medium text-slate-300 mb-1.5">
@@ -256,10 +358,11 @@ export default function Contact() {
 
                     <div>
                       <label className="block text-xs font-medium text-slate-300 mb-1.5">
-                        Subject / Topic
+                        Subject / Topic *
                       </label>
                       <input
                         type="text"
+                        required
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                         placeholder="e.g. Hackathon Partnership / Workshop Inquiry"
@@ -283,17 +386,29 @@ export default function Contact() {
 
                     <button
                       type="submit"
-                      className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold text-xs sm:text-sm text-white bg-gradient-to-r from-[#3020A5] via-[#6845F5] to-[#E32655] shadow-lg shadow-[#6845F5]/25 hover:opacity-95 transition-all"
+                      disabled={formStatus === 'loading'}
+                      className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold text-xs sm:text-sm text-white bg-gradient-to-r from-[#3020A5] via-[#6845F5] to-[#E32655] shadow-lg shadow-[#6845F5]/25 hover:opacity-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <Send className="w-4 h-4" />
-                      <span>Prepare Inquiry Draft</span>
+                      {formStatus === 'loading' ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Dispatching Inquiry...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4" />
+                          <span>Submit Inquiry</span>
+                        </>
+                      )}
                     </button>
                   </form>
                 )}
               </div>
 
               <div className="mt-6 pt-4 border-t border-slate-800/80 text-[11px] font-mono text-slate-400">
-                <span>Note: No mock data is sent to arbitrary servers. We prioritize privacy and transparent communication.</span>
+                <span>
+                  Environment configuration: To connect Formspree/EmailJS, provide <code>VITE_FORMSPREE_ENDPOINT</code> in <code>.env</code>.
+                </span>
               </div>
             </div>
           </div>

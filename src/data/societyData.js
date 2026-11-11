@@ -1,6 +1,6 @@
 /**
  * INFINITY – The Tech Society of SGGSCC, University of Delhi
- * Centralized, structured, and easily editable data store.
+ * Centralized, structured, and authentic data store.
  */
 
 export const societyInfo = {
@@ -8,6 +8,7 @@ export const societyInfo = {
   fullName: "INFINITY – The Tech Society",
   tagline: "The Tech Society",
   college: "Sri Guru Gobind Singh College of Commerce",
+  collegeShort: "SGGSCC",
   university: "University of Delhi",
   location: "Opposite TV Tower, Pitampura, Delhi, 110034",
   officialDescription:
@@ -16,11 +17,20 @@ export const societyInfo = {
     "Fostering innovation, creativity, and technological excellence among students at SGGSCC, University of Delhi.",
   headline: "Where Curiosity Meets Innovation.",
   subheadline:
-    "Exploring the limitless potential of technology through hands-on hackathons, cybersecurity challenges, gaming tournaments, and collaborative innovation.",
+    "Exploring the limitless potential of technology through hands-on hackathons, cybersecurity challenges, gaming tournaments, AI research, web engineering, and collaborative problem-solving.",
+  focusAreas: [
+    "Artificial Intelligence",
+    "Web Development",
+    "Competitive Coding",
+    "Cybersecurity",
+    "Gaming & Esports",
+    "Hackathons",
+    "Innovation & Design"
+  ],
   socials: {
     linkedin: "https://www.linkedin.com/company/infinitysggscc",
     instagram: "https://www.instagram.com/infinity.sggscc/",
-    collegeWebsite: "https://www.sggscc.ac.in",
+    collegeWebsite: "https://www.sggscc.ac.in/",
   },
   establishedContext: "Official Technology Society of SGGSCC, University of Delhi",
   motto: "Technology has no limits. Neither does creativity.",
@@ -39,7 +49,7 @@ export const corePillars = [
       "Transforming creative curiosity into practical solutions through cutting-edge technologies, prototyping, and modern software paradigms.",
     points: [
       "Rapid prototyping of student ideas",
-      "Workshops on emerging tech trends",
+      "Workshops on emerging tech trends & AI",
       "Hands-on project development labs"
     ]
   },
@@ -54,9 +64,9 @@ export const corePillars = [
     description:
       "Blending art, design, and interactive experiences to build digital solutions that are visually captivating and intuitive to use.",
     points: [
-      "UI/UX design challenges and critiques",
+      "UI/UX design critiques and workshops",
       "Game development and 3D modeling",
-      "Creative coding & generative media"
+      "Creative coding & interactive media"
     ]
   },
   {
@@ -72,7 +82,7 @@ export const corePillars = [
     points: [
       "Cross-discipline team hackathons",
       "Peer mentorship and coding circles",
-      "Inter-college society alliances"
+      "Inter-college technical alliances"
     ]
   },
   {
@@ -87,7 +97,7 @@ export const corePillars = [
       "Striving for technical rigor, algorithmic problem solving, code quality, and cybersecurity vigilance across all societal initiatives.",
     points: [
       "Competitive programming and CTF drills",
-      "Industry-standard code practices",
+      "Industry-standard software practices",
       "Expert tech talks & masterclasses"
     ]
   }
@@ -99,20 +109,20 @@ export const activitiesData = [
     title: "AI & Emerging Technologies",
     category: "Intelligent Systems",
     icon: "Cpu",
-    badge: "Focus Track",
-    shortDesc: "Exploring machine learning, generative models, neural architectures, and future-forward computing paradigms.",
+    badge: "Focus Area",
+    shortDesc: "Exploring machine learning, generative models, neural architectures, and intelligent systems.",
     fullDesc:
       "Students explore practical applications of artificial intelligence, computer vision, natural language processing, and prompt engineering through collaborative experiments and research discussions.",
-    topics: ["Machine Learning Fundamentals", "Deep Learning & NLP", "Generative AI & LLMs", "Edge AI & IoT Prototyping"],
+    topics: ["Machine Learning Fundamentals", "Deep Learning & NLP", "Generative AI & LLMs", "Edge AI & Prototyping"],
     color: "#55A6AC"
   },
   {
     id: "web-software-engineering",
-    title: "Web & Software Engineering",
+    title: "Web Development & Software",
     category: "Full-Stack Development",
     icon: "Globe",
     badge: "Active Domain",
-    shortDesc: "Architecting modern web apps, scalable APIs, reactive interfaces, and developer-friendly platforms.",
+    shortDesc: "Architecting modern web apps, scalable APIs, responsive interfaces, and developer-friendly platforms.",
     fullDesc:
       "From responsive single-page applications to resilient server architectures, members master modern frameworks, state management, containerization, and clean code principles.",
     topics: ["Modern React & Next.js", "RESTful & GraphQL APIs", "Cloud & Microservices", "Version Control & CI/CD"],
@@ -132,22 +142,22 @@ export const activitiesData = [
   },
   {
     id: "gaming-esports",
-    title: "Gaming & Esports Tournaments",
+    title: "Gaming & Esports",
     category: "Competitive Gaming",
     icon: "Gamepad2",
     badge: "Community Favorite",
     shortDesc: "Hosting esports leagues, game design discussions, strategic tournaments, and community gaming sessions.",
     fullDesc:
       "Bringing together competitive gamers and aspiring game developers. We organize LAN & online tournaments, analyze game engines, and celebrate gaming culture.",
-    topics: ["Competitive Esports Leagues", "Game Engine Exploration (Unity/Godot)", "Strategy & Team Dynamics", "Streaming & Tournament Ops"],
+    topics: ["Competitive Esports Leagues", "Game Engine Exploration (Unity/Godot)", "Strategy & Team Dynamics", "Tournament Operations"],
     color: "#55A6AC"
   },
   {
     id: "competitions-hackathons",
-    title: "Tech-Driven Competitions",
+    title: "Hackathons & Coding Competitions",
     category: "Hackathons & Challenges",
     icon: "Trophy",
-    badge: "Flagship Events",
+    badge: "Flagship Track",
     shortDesc: "Testing algorithmic grit, problem-solving agility, and rapid product development under pressure.",
     fullDesc:
       "Intense coding sprints, hackathons, and web-design competitions challenging students to solve real-world problems in timed environments.",
@@ -156,253 +166,287 @@ export const activitiesData = [
   },
   {
     id: "tech-learning-collaboration",
-    title: "Tech Learning & Mentorship",
+    title: "Coding Learning & Peer Mentorship",
     category: "Community & Peer Learning",
     icon: "Code2",
     badge: "Open To All",
     shortDesc: "Hands-on bootcamps, peer-led coding sessions, open-source workshops, and student mentorship.",
     fullDesc:
       "A supportive, inclusive environment where beginners learn fundamentals and advanced developers sharpen their mentorship and public speaking capabilities.",
-    topics: ["Beginner-to-Intermediate Bootcamps", "Open Source Contribution Drives", "Resume & Portfolio Reviews", "Tech Talks & Alumni AMA"],
+    topics: ["Beginner-to-Intermediate Bootcamps", "Open Source Contribution Drives", "Resume & Portfolio Reviews", "Tech Talks & Study Jams"],
     color: "#6845F5"
   }
 ];
 
 export const eventsData = [
   {
-    id: "cyber-sentinel-week",
-    title: "Cybersecurity Awareness Week",
-    category: "Cybersecurity",
-    statusBadge: "Verified Society Event",
-    statusType: "flagship",
-    date: "Annual Society Initiative",
-    duration: "Week-long Series",
-    mode: "Hybrid / Campus & Online",
-    image: "/assets/placeholders/event-cybersecurity.jpg",
-    shortDesc: "A week-long immersion into ethical hacking, digital hygiene, system forensics, and student security challenges.",
-    longDesc: "As highlighted in the official society overview, Cybersecurity Week is one of INFINITY's signature engagements. The event equips students across SGGSCC with crucial awareness on threat mitigation, passwords and authentication security, social engineering defenses, and introductory CTF challenges.",
-    agenda: [
-      "Keynote on Modern Cyber Threat Landscape",
-      "Workshop: Ethical Hacking Tools & Environment Setup",
-      "Hands-on Defense: Spotting Phishing & Social Engineering",
-      "Campus Capture-The-Flag (CTF) Challenge"
-    ],
-    prerequisites: "Open to all students. No prior cybersecurity expertise required.",
-    isVerified: true
-  },
-  {
-    id: "infinity-gaming-showdown",
+    id: "infinity-gaming-showdown-2027",
     title: "INFINITY Gaming Tournament",
     category: "Gaming & Esports",
-    statusBadge: "Verified Society Event",
-    statusType: "flagship",
-    date: "Annual Tournament",
+    status: "Upcoming", // 'Upcoming' | 'Ongoing' | 'Completed'
+    statusBadge: "Upcoming Tournament",
+    isHackathon: false,
+    dateTime: "Annual 2026–27 Session • Dates to be announced",
+    registrationDeadline: "To be announced alongside official bracket release",
+    venue: "SGGSCC Campus & Online Arena",
     duration: "2-Day Championship",
-    mode: "Campus Arena / LAN",
-    image: "/assets/placeholders/event-gaming.jpg",
+    mode: "Hybrid / Campus LAN & Online",
+    image: "/assets/placeholders/event-gaming.svg",
     shortDesc: "High-adrenaline gaming tournament bringing together SGGSCC's top esports players in competitive team matches.",
     longDesc: "Official gaming showdown organized by INFINITY to celebrate strategic esports, multiplayer teamwork, and digital sportsmanship. Features knockout rounds, custom lobby shoutcasting, and community viewership.",
-    agenda: [
-      "Registration & Knockout Bracket Reveal",
-      "Group Stage & Quarter-Final Matches",
-      "Live Streamed Semi-Finals with Shoutcasting",
-      "Grand Finale & Championship Crowning"
+    eligibility: "Open to all enrolled college students. Valid college ID required during check-in.",
+    rules: [
+      "Fair play and anti-cheat policies are strictly enforced.",
+      "Team rosters must be finalized prior to bracket announcement.",
+      "Tournament format: Best-of-3 knockout matches leading to the Grand Finale.",
+      "Official title-specific rulebooks provided upon registration."
     ],
-    prerequisites: "Registered team or solo entry according to tournament title rules.",
+    registrationUrl: null, // Null indicates details to be announced
     isVerified: true
   },
   {
-    id: "tech-driven-hackathon",
-    title: "Tech-Driven Innovation Sprint",
-    category: "Competitions",
-    statusBadge: "Verified Society Event",
-    statusType: "flagship",
-    date: "Flagship Hackathon",
+    id: "cyber-security-week-2027",
+    title: "Cybersecurity Awareness Week",
+    category: "Cybersecurity",
+    status: "Upcoming",
+    statusBadge: "Upcoming Initiative",
+    isHackathon: false,
+    dateTime: "Upcoming 2026–27 Academic Session",
+    registrationDeadline: "To be announced with official session schedule",
+    venue: "SGGSCC Seminar Hall & Virtual Labs",
+    duration: "Week-long Series",
+    mode: "Hybrid / Campus & Online",
+    image: "/assets/placeholders/event-cybersecurity.svg",
+    shortDesc: "A week-long immersion into ethical hacking, digital hygiene, system forensics, and student security challenges.",
+    longDesc: "As highlighted in the official society overview, Cybersecurity Week is one of INFINITY's signature engagements. The event equips students across SGGSCC with crucial awareness on threat mitigation, authentication security, social engineering defenses, and introductory CTF challenges.",
+    eligibility: "Open to all SGGSCC students and University of Delhi tech enthusiasts. No prior cybersecurity expertise required.",
+    rules: [
+      "All demonstrations and CTF challenges are held in sandboxed learning environments.",
+      "Attendees must follow the college code of conduct and ethical computing standards.",
+      "Participation certificates awarded upon completion of workshop tracks."
+    ],
+    registrationUrl: null,
+    isVerified: true
+  },
+  {
+    id: "tech-driven-hackathon-2027",
+    title: "INFINITY Tech Innovation Hackathon",
+    category: "Hackathons",
+    status: "Upcoming",
+    statusBadge: "Active Hackathon Track",
+    isHackathon: true,
+    dateTime: "Upcoming 2026–27 Session • Schedule to be announced",
+    registrationDeadline: "To be announced with problem statement reveal",
+    venue: "SGGSCC Campus Labs & Virtual Hub",
     duration: "36-Hour Hackathon",
-    mode: "SGGSCC Campus & Virtual",
-    image: "/assets/placeholders/event-hackathon.jpg",
+    mode: "Hybrid / SGGSCC & Online",
+    image: "/assets/placeholders/event-hackathon.svg",
     shortDesc: "Collaborative tech hackathon challenging participants to engineer creative software solutions for real-world issues.",
     longDesc: "A core pillar of INFINITY's vision: an engaging tech competition where multidisciplinary student squads ideate, prototype, and pitch functional software, web platforms, or hardware solutions.",
-    agenda: [
-      "Problem Statement Releases & Squad Formation",
-      "Mentorship Checkpoints & Architecture Review",
-      "Midnight Code Push & Progress Demos",
-      "Final Jury Showcase, Pitching, and Awards"
+    eligibility: "Undergraduate student teams of 2 to 4 members with active college IDs.",
+    rules: [
+      "All code and prototypes must be developed during the hackathon timeframe.",
+      "Projects must be submitted with a public Git repository and a demonstrable working prototype.",
+      "Pre-built projects and plagiarism will result in immediate disqualification.",
+      "Judging criteria: Innovation, Technical Rigor, Usability, and Pitch Presentation."
     ],
-    prerequisites: "Teams of 2 to 4 members with laptops and Git/GitHub readiness.",
+    registrationUrl: null,
     isVerified: true
   },
   {
-    id: "web-craft-workshop",
-    title: "Modern Web Craft & UI Engineering",
+    id: "web-craft-workshop-archival",
+    title: "Web Engineering & Modern Frameworks Bootcamp",
     category: "Workshops",
-    statusBadge: "Upcoming Workshop Series",
-    statusType: "upcoming",
-    date: "Upcoming Academic Session",
-    duration: "3-Hour Intensive Workshop",
-    mode: "Computer Lab / SGGSCC",
-    image: "/assets/placeholders/event-webdev.jpg",
-    shortDesc: "Deep-dive session into building responsive, accessible, and high-performance modern web experiences.",
+    status: "Completed",
+    statusBadge: "Completed Workshop",
+    isHackathon: false,
+    dateTime: "Previous Academic Session",
+    registrationDeadline: "Concluded",
+    venue: "Computer Lab 2, SGGSCC",
+    duration: "3-Hour Hands-on Session",
+    mode: "In-Person",
+    image: "/assets/placeholders/event-webdev.svg",
+    shortDesc: "Hands-on bootcamp on modern component architectures, state management, and deploying applications.",
     longDesc: "An educational bootcamp track focusing on reactive component architectures, CSS grid/flexbox mastery, state synchronization, and deploying projects directly to cloud hosting providers.",
-    agenda: [
-      "Semantic HTML & Component-First Thinking",
-      "Responsive Layouts with Tailwind CSS",
-      "Handling State & Interactions cleanly",
-      "Live Deployment & GitHub Showcase"
+    eligibility: "Attended by SGGSCC students across diverse degree programs.",
+    rules: [
+      "Concluded academic session workshop series.",
+      "Resources and code repositories archived for community reference."
     ],
-    prerequisites: "Basic familiarity with HTML, CSS, and JavaScript fundamentals.",
-    isVerified: false,
-    placeholderNote: "Dates & registrations subject to upcoming semester calendar announcement."
-  },
-  {
-    id: "ai-prompt-code-masterclass",
-    title: "AI Tools & Developer Productivity",
-    category: "AI & Emerging Tech",
-    statusBadge: "Upcoming Masterclass",
-    statusType: "upcoming",
-    date: "Upcoming Academic Session",
-    duration: "2-Hour Masterclass",
-    mode: "Seminar Hall / Online",
-    image: "/assets/placeholders/event-ai.jpg",
-    shortDesc: "Learn how to leverage developer copilots, prompt engineering, and LLM APIs to build smarter software faster.",
-    longDesc: "A practical guide to incorporating modern AI workflows in college projects, from prompt engineering and code review assistance to building AI-assisted web utilities.",
-    agenda: [
-      "Overview of LLM Architectures for Developers",
-      "Effective Prompt Engineering Strategies",
-      "Integrating APIs into Web Applications",
-      "Ethics, Bias & Safeguards in AI"
-    ],
-    prerequisites: "Open to all SGGSCC students interested in AI.",
-    isVerified: false,
-    placeholderNote: "Speaker lineup & session schedule to be announced on official social handles."
+    registrationUrl: null,
+    isVerified: true
   }
 ];
 
-export const galleryItems = [
-  {
-    id: "gallery-1",
-    title: "Cybersecurity Workshop & Hands-on Lab",
-    category: "Cybersecurity",
-    aspect: "landscape",
-    caption: "Students analyzing network security protocols and practicing safe digital defenses in campus lab.",
-    dateTag: "Society Archives",
-    isPlaceholder: true
-  },
-  {
-    id: "gallery-2",
-    title: "Esports Arena & Tournament Battle",
-    category: "Gaming",
-    aspect: "square",
-    caption: "Intense competitive gaming matches during the annual INFINITY gaming tournament.",
-    dateTag: "Society Archives",
-    isPlaceholder: true
-  },
-  {
-    id: "gallery-3",
-    title: "Hackathon Midnight Hacking Session",
-    category: "Hackathons",
-    aspect: "tall",
-    caption: "Teams collaborating, debugging code, and building prototypes through the night.",
-    dateTag: "Society Archives",
-    isPlaceholder: true
-  },
-  {
-    id: "gallery-4",
-    title: "Tech Ideation & Whiteboard Architecture",
-    category: "Bootcamps",
-    aspect: "square",
-    caption: "Brainstorming session mapping out user journey and microservice flow for a student project.",
-    dateTag: "Society Archives",
-    isPlaceholder: true
-  },
-  {
-    id: "gallery-5",
-    title: "Final Project Pitch to Faculty & Mentors",
-    category: "Hackathons",
-    aspect: "landscape",
-    caption: "Student squads presenting their functional prototypes during competition demo hour.",
-    dateTag: "Society Archives",
-    isPlaceholder: true
-  },
-  {
-    id: "gallery-6",
-    title: "INFINITY Community Meetup & Onboarding",
-    category: "Community",
-    aspect: "landscape",
-    caption: "Welcoming enthusiastic new tech talent into the INFINITY family at SGGSCC.",
-    dateTag: "Society Archives",
-    isPlaceholder: true
-  }
-];
+/**
+ * Gallery Items:
+ * Kept clean and modular. When genuine event photographs become available,
+ * simply populate this array with { id, title, category, image, caption, date }.
+ * When empty, the Gallery component automatically presents an elegant empty state.
+ */
+export const galleryItems = [];
 
+/**
+ * Team Data: Authentic 2026–27 Session Leadership
+ * Extracted directly from the official photographs supplied in public/assets/team/
+ */
 export const teamData = {
-  historicalTenure: "2025–2026 Academic Session (Historical Council)",
-  note: "The council details below reflect the verified historical record for the 2025–26 session. They are distinctly preserved for institutional continuity and are not automatically claimed as the current 2026–27 executive body.",
-  councilMembers: [
+  currentSession: "2026–27 Academic Session",
+  sessionBadge: "Executive Council & Departmental Leads 2026–27",
+  officeBearers: [
     {
-      name: "Kulsehaj Singh",
-      role: "President",
-      tenure: "2025–26 Session",
-      badge: "Historical Executive",
-      bio: "Spearheaded society vision, inter-college partnerships, and flagship tech initiatives across SGGSCC.",
-      avatarColor: "from-[#55A6AC] to-[#3020A5]",
-      initials: "KS",
-      linkedin: "https://www.linkedin.com/company/infinitysggscc",
+      id: "parmeet-singh",
+      name: "Parmeet Singh",
+      designation: "President",
+      roleCategory: "Office Bearer 26 - 27",
+      tier: "senior",
+      department: "Executive Leadership",
+      image: "/assets/team/WhatsApp Image 2026-11-11 at 13.34.29.jpeg",
       verified: true
     },
     {
-      name: "Advay Nagpal",
-      role: "Vice-President",
-      tenure: "2025–26 Session",
-      badge: "Historical Executive",
-      bio: "Directed internal operations, technical domain roadmaps, and student competition logistics.",
-      avatarColor: "from-[#6845F5] to-[#E32655]",
-      initials: "AN",
-      linkedin: "https://www.linkedin.com/company/infinitysggscc",
+      id: "divjot-singh",
+      name: "Divjot Singh",
+      designation: "Vice President",
+      roleCategory: "Office Bearer 26 - 27",
+      tier: "senior",
+      department: "Executive Leadership",
+      image: "/assets/team/WhatsApp Image 2026-11-11 at 13.34.28 (2).jpeg",
       verified: true
     },
     {
-      name: "Harshmohan Singh",
-      role: "General Secretary",
-      tenure: "2025–26 Session",
-      badge: "Historical Executive",
-      bio: "Managed executive administration, institutional relations, and society documentation.",
-      avatarColor: "from-[#3020A5] to-[#55A6AC]",
-      initials: "HS",
-      linkedin: "https://www.linkedin.com/company/infinitysggscc",
+      id: "braham-bir-s",
+      name: "Braham Bir S.",
+      designation: "General Secretary",
+      roleCategory: "Office Bearer 26 - 27",
+      tier: "senior",
+      department: "Administration",
+      image: "/assets/team/WhatsApp Image 2026-11-11 at 13.34.28 (1).jpeg",
       verified: true
     },
     {
-      name: "Harnoor Kaur",
-      role: "Joint Secretary",
-      tenure: "2025–26 Session",
-      badge: "Historical Executive",
-      bio: "Coordinated cross-departmental communications, event scheduling, and member engagements.",
-      avatarColor: "from-[#E32655] to-[#6845F5]",
-      initials: "HK",
-      linkedin: "https://www.linkedin.com/company/infinitysggscc",
+      id: "krisha-gupta",
+      name: "Krisha Gupta",
+      designation: "Joint Secretary",
+      roleCategory: "Office Bearer 26 - 27",
+      tier: "senior",
+      department: "Coordination",
+      image: "/assets/team/WhatsApp Image 2026-11-11 at 13.34.28.jpeg",
       verified: true
     },
     {
-      name: "Prabhleen Kaur",
-      role: "Advisory",
-      tenure: "2025–26 Session",
-      badge: "Advisory Council",
-      bio: "Provided strategic guidance, society governance counsel, and mentorship to incoming leads.",
-      avatarColor: "from-[#55A6AC] to-[#E32655]",
-      initials: "PK",
-      linkedin: "https://www.linkedin.com/company/infinitysggscc",
+      id: "keshav-gupta",
+      name: "Keshav Gupta",
+      designation: "Advisory",
+      roleCategory: "Office Bearer 26 - 27",
+      tier: "senior",
+      department: "Advisory Council",
+      image: "/assets/team/WhatsApp Image 2026-11-11 at 13.34.27 (1).jpeg",
       verified: true
     }
   ],
-  upcomingSessionNotice: {
-    title: "Executive Council 2026–27",
-    subtitle: "Upcoming Session Announcements & Recruitment",
-    description:
-      "Applications, interview rounds, and appointment notices for the new 2026–27 session executive council and departmental heads will be posted across official channels following college guidelines.",
-    status: "Upcoming Announcement"
-  }
+  departmentalHeads: [
+    {
+      id: "parth-midha",
+      name: "Parth Midha",
+      designation: "Tech Head",
+      roleCategory: "Departmental Head 26 - 27",
+      tier: "head",
+      department: "Technical",
+      image: "/assets/team/WhatsApp Image 2026-11-11 at 13.34.27.jpeg",
+      verified: true
+    },
+    {
+      id: "prabhasees-s",
+      name: "Prabhasees. S",
+      designation: "Tech Head",
+      roleCategory: "Departmental Head 26 - 27",
+      tier: "head",
+      department: "Technical",
+      image: "/assets/team/WhatsApp Image 2026-11-11 at 13.34.26 (2).jpeg",
+      verified: true
+    },
+    {
+      id: "hargun-kaur",
+      name: "Hargun Kaur",
+      designation: "Marketing Head",
+      roleCategory: "Departmental Head 26 - 27",
+      tier: "head",
+      department: "Marketing",
+      image: "/assets/team/WhatsApp Image 2026-11-11 at 13.34.26 (1).jpeg",
+      verified: true
+    },
+    {
+      id: "yuvraj",
+      name: "Yuvraj",
+      designation: "Marketing Head",
+      roleCategory: "Departmental Head 26 - 27",
+      tier: "head",
+      department: "Marketing",
+      image: "/assets/team/WhatsApp Image 2026-11-11 at 13.34.26.jpeg",
+      verified: true
+    },
+    {
+      id: "swayam",
+      name: "Swayam",
+      designation: "Sponsor & PR Head",
+      roleCategory: "Departmental Head 26 - 27",
+      tier: "head",
+      department: "Sponsor & PR",
+      image: "/assets/team/WhatsApp Image 2026-11-11 at 13.34.25.jpeg",
+      verified: true
+    },
+    {
+      id: "namanpreet-k",
+      name: "Namanpreet. K",
+      designation: "Sponsor & PR Head",
+      roleCategory: "Departmental Head 26 - 27",
+      tier: "head",
+      department: "Sponsor & PR",
+      image: "/assets/team/WhatsApp Image 2026-11-11 at 13.34.23.jpeg",
+      verified: true
+    },
+    {
+      id: "dashmeet-kaur",
+      name: "Dashmeet Kaur",
+      designation: "Logistics Head",
+      roleCategory: "Departmental Head 26 - 27",
+      tier: "head",
+      department: "Logistics",
+      image: "/assets/team/WhatsApp Image 2026-11-11 at 13.34.24.jpeg",
+      verified: true
+    }
+  ],
+  seniorExecutives: [
+    {
+      id: "yajat-kohli",
+      name: "Yajat Kohli",
+      designation: "Sr. Executive Member",
+      roleCategory: "Executives 26 - 27",
+      tier: "executive",
+      department: "Executive Committee",
+      image: "/assets/team/WhatsApp Image 2026-11-11 at 13.34.25 (2).jpeg",
+      verified: true
+    },
+    {
+      id: "jasreet-kaur",
+      name: "Jasreet Kaur",
+      designation: "Sr. Executive Member",
+      roleCategory: "Executives 26 - 27",
+      tier: "executive",
+      department: "Executive Committee",
+      image: "/assets/team/WhatsApp Image 2026-11-11 at 13.34.25 (1).jpeg",
+      verified: true
+    }
+  ]
 };
+
+// Flattened array helper for easy filtering
+export const allTeamMembers = [
+  ...teamData.officeBearers,
+  ...teamData.departmentalHeads,
+  ...teamData.seniorExecutives,
+];
 
 export const faqs = [
   {
@@ -410,12 +454,16 @@ export const faqs = [
     a: "All enrolled students of Sri Guru Gobind Singh College of Commerce (SGGSCC), University of Delhi across all years and degree programs are welcome to apply during official recruitment drives and attend open workshops."
   },
   {
-    q: "Do I need prior coding experience to be a part of the society?",
-    a: "Not at all! INFINITY is built on curiosity and growth. While we have specialized tracks for competitive coding, we also have domains dedicated to UI/UX design, cybersecurity awareness, gaming, event management, and beginner learning bootcamps."
+    q: "Do I need prior coding experience to join INFINITY?",
+    a: "Not at all! INFINITY is built on curiosity and growth. While we have specialized tracks for competitive coding and full-stack development, we also have domains dedicated to UI/UX design, marketing, logistics, cybersecurity awareness, and beginner study jams."
+  },
+  {
+    q: "What technical domains does INFINITY focus on?",
+    a: "Our core areas of interest include Artificial Intelligence, Web Development, Competitive Coding, Cybersecurity, Gaming & Esports, Hackathons, and Technical Workshops."
   },
   {
     q: "How frequently does INFINITY organize events?",
-    a: "We host regular monthly workshops, coding drills, and gaming scrims, along with our flagship annual events including Cybersecurity Awareness Week, Gaming Tournaments, and Inter-College Hackathons."
+    a: "We host regular workshops, coding drills, and gaming scrims throughout the academic semester, along with our flagship annual events including Cybersecurity Awareness Week, Gaming Tournaments, and Inter-College Hackathons."
   },
   {
     q: "Where can I follow official society updates?",

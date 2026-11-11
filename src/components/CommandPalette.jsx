@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, X, Calendar, Layers, Users, Compass, ChevronRight, Hash } from 'lucide-react';
-import { activitiesData, eventsData } from '../data/societyData';
+import { activitiesData, eventsData, allTeamMembers } from '../data/societyData';
 
 export default function CommandPalette({ isOpen, onClose, onSelectEvent }) {
   const [query, setQuery] = useState('');
@@ -25,7 +25,7 @@ export default function CommandPalette({ isOpen, onClose, onSelectEvent }) {
     { type: 'section', title: 'What We Do', subtitle: 'Domains, Learning Tracks & Activities', id: 'activities', icon: Layers },
     { type: 'section', title: 'Events & Experiences', subtitle: 'Gaming, Cybersecurity & Hackathons', id: 'events', icon: Calendar },
     { type: 'section', title: 'Gallery Moments', subtitle: 'Campus Visual Archive & Memories', id: 'gallery', icon: Hash },
-    { type: 'section', title: 'Our Team', subtitle: 'Executive Council & Leadership', id: 'team', icon: Users },
+    { type: 'section', title: 'Our Team', subtitle: 'Official 2026–27 Leadership Council', id: 'team', icon: Users },
     { type: 'section', title: 'Contact & Inquiries', subtitle: 'Campus Location & Direct Message', id: 'contact', icon: Hash },
   ];
 
@@ -41,7 +41,10 @@ export default function CommandPalette({ isOpen, onClose, onSelectEvent }) {
           .map(act => ({ type: 'domain', title: act.title, subtitle: act.category, id: 'activities', icon: Layers })),
         ...eventsData
           .filter(evt => evt.title.toLowerCase().includes(query.toLowerCase()) || evt.category.toLowerCase().includes(query.toLowerCase()))
-          .map(evt => ({ type: 'event', title: evt.title, subtitle: `${evt.category} • ${evt.date}`, id: 'events', rawEvent: evt, icon: Calendar }))
+          .map(evt => ({ type: 'event', title: evt.title, subtitle: `${evt.category} • ${evt.dateTime}`, id: 'events', rawEvent: evt, icon: Calendar })),
+        ...allTeamMembers
+          .filter(member => member.name.toLowerCase().includes(query.toLowerCase()) || member.designation.toLowerCase().includes(query.toLowerCase()) || member.department.toLowerCase().includes(query.toLowerCase()))
+          .map(member => ({ type: 'team', title: member.name, subtitle: `${member.designation} (${member.roleCategory})`, id: 'team', icon: Users }))
       ];
 
   const handleSelect = (item) => {
@@ -71,7 +74,7 @@ export default function CommandPalette({ isOpen, onClose, onSelectEvent }) {
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search sections, hackathons, workshops, domains..."
+            placeholder="Search sections, hackathons, team members, domains..."
             className="w-full bg-transparent text-white text-sm placeholder:text-slate-500 focus:outline-none"
           />
           {query && (
@@ -88,7 +91,7 @@ export default function CommandPalette({ isOpen, onClose, onSelectEvent }) {
         <div className="max-h-80 overflow-y-auto p-2 divide-y divide-slate-800/40">
           {searchResults.length === 0 ? (
             <div className="p-8 text-center text-xs text-slate-400">
-              No matching sections or events found for "{query}".
+              No matching results found for "{query}".
             </div>
           ) : (
             searchResults.map((item, idx) => {

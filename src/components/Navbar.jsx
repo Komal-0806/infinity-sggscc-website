@@ -166,7 +166,7 @@ export default function Navbar({ onOpenSearch, onOpenCommunityModal }) {
                 <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <span className="relative flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-[#55A6AC]" />
-                  <span>Join Community</span>
+                  <span>Join INFINITY</span>
                 </span>
               </button>
             </div>
@@ -268,7 +268,7 @@ export default function Navbar({ onOpenSearch, onOpenCommunityModal }) {
               className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold text-white bg-gradient-to-r from-[#3020A5] via-[#6845F5] to-[#E32655] shadow-lg shadow-[#6845F5]/25"
             >
               <Sparkles className="w-4 h-4 text-[#55A6AC]" />
-              <span>Join the Community</span>
+              <span>Join INFINITY</span>
             </button>
             <div className="text-center text-xs text-slate-500 font-mono">
               Official Tech Society of SGGSCC, DU

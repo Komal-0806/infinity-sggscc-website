@@ -1,5 +1,16 @@
 import React from 'react';
-import { ArrowRight, Sparkles, Terminal, Calendar, Compass, ShieldCheck, Gamepad2, Cpu } from 'lucide-react';
+import { 
+  ArrowRight, 
+  Sparkles, 
+  Calendar, 
+  ShieldCheck, 
+  Gamepad2, 
+  Cpu, 
+  Code2, 
+  Globe, 
+  Trophy,
+  ChevronRight
+} from 'lucide-react';
 import HeroInfinityCanvas from './HeroInfinityCanvas';
 import { societyInfo } from '../data/societyData';
 
@@ -15,9 +26,9 @@ export default function Hero({ onOpenCommunityModal }) {
   return (
     <section
       id="hero"
-      className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-[#0B1020]"
+      className="relative min-h-[95vh] lg:min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden bg-[#0B1020]"
     >
-      {/* 1. Perspective 3D Grid Floor inspired by LinkedIn Banner */}
+      {/* 1. Perspective 3D Grid Floor inspired by official LinkedIn Banner */}
       <div className="absolute inset-x-0 bottom-0 h-96 perspective-grid-floor pointer-events-none opacity-40 z-0" />
 
       {/* 2. Abstract Purple 3D Fluid Blobs inspired by LinkedIn Banner */}
@@ -33,7 +44,7 @@ export default function Hero({ onOpenCommunityModal }) {
       />
       {/* Center Ambient Radial Aura */}
       <div 
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[650px] h-[450px] bg-gradient-to-b from-[#6845F5]/15 via-[#3020A5]/10 to-transparent blur-3xl pointer-events-none z-0"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[480px] bg-gradient-to-b from-[#6845F5]/15 via-[#3020A5]/10 to-transparent blur-3xl pointer-events-none z-0"
         aria-hidden="true"
       />
 
@@ -50,16 +61,16 @@ export default function Hero({ onOpenCommunityModal }) {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#55A6AC]"></span>
           </div>
           <span className="text-xs sm:text-sm font-mono tracking-wide text-slate-300">
-            Official Tech Society of SGGSCC • University of Delhi
+            Sri Guru Gobind Singh College of Commerce (SGGSCC) • University of Delhi
           </span>
         </div>
 
         {/* Central Society Emblem & Title Group */}
         <div className="flex flex-col items-center mb-6">
-          {/* Logo Brand Frame */}
+          {/* Logo Brand Frame - Official Logo preserved exactly without distortion */}
           <div className="relative mb-4 group cursor-pointer" onClick={() => scrollTo('about')}>
             <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-[#55A6AC] via-[#6845F5] to-[#E32655] opacity-50 blur-lg group-hover:opacity-85 transition duration-500" />
-            <div className="relative p-3 rounded-2xl bg-[#0B1020]/90 border border-white/10 flex items-center justify-center">
+            <div className="relative p-3.5 rounded-2xl bg-[#0B1020]/90 border border-white/10 flex items-center justify-center">
               <img
                 src="/assets/infinity-official-logo.png"
                 alt="INFINITY – The Tech Society Official Logo"
@@ -68,11 +79,11 @@ export default function Hero({ onOpenCommunityModal }) {
             </div>
           </div>
 
-          {/* Tagline */}
-          <div className="flex items-center gap-2 mb-3">
+          {/* Subtitle / Society Tagline */}
+          <div className="flex items-center gap-2.5 mb-3">
             <div className="h-px w-8 bg-[#55A6AC]" />
             <span className="text-base sm:text-lg font-script-society tracking-widest text-[#55A6AC] font-bold">
-              {societyInfo.tagline}
+              {societyInfo.fullName}
             </span>
             <div className="h-px w-8 bg-[#E32655]" />
           </div>
@@ -85,66 +96,77 @@ export default function Hero({ onOpenCommunityModal }) {
             </span>
           </h1>
 
-          {/* Short Verified Descriptive Statement */}
-          <p className="max-w-2xl text-base sm:text-lg md:text-xl text-slate-300 font-sans font-normal leading-relaxed mb-8">
-            Fostering innovation, creativity, and technological excellence among students at{' '}
-            <span className="text-white font-semibold">Sri Guru Gobind Singh College of Commerce</span>, University of Delhi.
+          {/* Concise, impactful description emphasizing all core technology focus areas */}
+          <p className="max-w-2xl text-base sm:text-lg md:text-xl text-slate-300 font-sans font-normal leading-relaxed mb-6">
+            The official tech society of <span className="text-white font-semibold">SGGSCC, University of Delhi</span>. Driving student excellence across <span className="text-[#55A6AC] font-medium">Artificial Intelligence</span>, <span className="text-[#6845F5] font-medium">Web Development</span>, <span className="text-[#E32655] font-medium">Cybersecurity</span>, <span className="text-[#55A6AC] font-medium">Competitive Coding</span>, <span className="text-[#6845F5] font-medium">Gaming</span>, and <span className="text-[#E32655] font-medium">Hackathons</span>.
           </p>
+
+          {/* Technology Focus Badges Ribbon */}
+          <div className="flex flex-wrap items-center justify-center gap-2 max-w-2xl mb-8">
+            {societyInfo.focusAreas.map((area, idx) => (
+              <span 
+                key={idx}
+                className="px-3 py-1 rounded-full text-xs font-mono font-medium bg-[#10182D]/80 border border-slate-700/80 text-slate-300 hover:border-[#6845F5]/60 hover:text-white transition-colors"
+              >
+                {area}
+              </span>
+            ))}
+          </div>
         </div>
 
-        {/* Action CTAs */}
+        {/* Action CTAs: Explore Events & Join INFINITY */}
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-12">
           {/* CTA 1: Explore Events */}
           <button
             onClick={() => scrollTo('events')}
             type="button"
-            className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl font-semibold text-white text-base shadow-xl shadow-[#6845F5]/30 hover:shadow-[#6845F5]/60 transition-all duration-300 bg-gradient-to-r from-[#3020A5] via-[#6845F5] to-[#E32655] active:scale-[0.98]"
+            className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-xl font-semibold text-white text-base shadow-xl shadow-[#6845F5]/30 hover:shadow-[#6845F5]/60 transition-all duration-300 bg-gradient-to-r from-[#3020A5] via-[#6845F5] to-[#E32655] active:scale-[0.98]"
           >
             <Calendar className="w-5 h-5 text-[#55A6AC] group-hover:scale-110 transition-transform" />
             <span>Explore Events</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
 
-          {/* CTA 2: Discover INFINITY */}
+          {/* CTA 2: Join INFINITY */}
           <button
-            onClick={() => scrollTo('about')}
+            onClick={onOpenCommunityModal}
             type="button"
-            className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl font-semibold text-slate-200 hover:text-white text-base bg-[#10182D]/80 hover:bg-[#10182D] border border-slate-700/70 hover:border-[#55A6AC]/60 transition-all duration-300 shadow-lg active:scale-[0.98]"
+            className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-xl font-semibold text-slate-200 hover:text-white text-base bg-[#10182D]/90 hover:bg-[#10182D] border border-slate-700/80 hover:border-[#55A6AC]/70 transition-all duration-300 shadow-lg active:scale-[0.98]"
           >
-            <Compass className="w-5 h-5 text-slate-400 group-hover:text-[#55A6AC] transition-colors" />
-            <span>Discover INFINITY</span>
+            <Sparkles className="w-5 h-5 text-[#55A6AC] group-hover:scale-110 transition-transform" />
+            <span>Join INFINITY</span>
           </button>
         </div>
 
-        {/* Distinctive Verified Society Activity Highlights (Directly from verified overview) */}
+        {/* Distinctive Verified Society Activity Highlights */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 w-full max-w-3xl pt-6 border-t border-slate-800/80">
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-[#10182D]/60 border border-slate-800/80 text-left backdrop-blur-sm">
+          <div className="flex items-center gap-3 p-3.5 rounded-xl bg-[#10182D]/60 border border-slate-800/80 text-left backdrop-blur-sm">
             <div className="p-2 rounded-lg bg-[#55A6AC]/10 text-[#55A6AC] border border-[#55A6AC]/20">
               <Gamepad2 className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-xs font-mono text-slate-400 uppercase tracking-wider">Official Domain</div>
-              <div className="text-sm font-bold text-white">Gaming Tournaments</div>
+              <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider">Official Domain</div>
+              <div className="text-sm font-bold text-white">Gaming & Esports</div>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-[#10182D]/60 border border-slate-800/80 text-left backdrop-blur-sm">
+          <div className="flex items-center gap-3 p-3.5 rounded-xl bg-[#10182D]/60 border border-slate-800/80 text-left backdrop-blur-sm">
             <div className="p-2 rounded-lg bg-[#E32655]/10 text-[#E32655] border border-[#E32655]/20">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-xs font-mono text-slate-400 uppercase tracking-wider">Official Domain</div>
+              <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider">Official Domain</div>
               <div className="text-sm font-bold text-white">Cybersecurity Weeks</div>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-[#10182D]/60 border border-slate-800/80 text-left backdrop-blur-sm">
+          <div className="flex items-center gap-3 p-3.5 rounded-xl bg-[#10182D]/60 border border-slate-800/80 text-left backdrop-blur-sm">
             <div className="p-2 rounded-lg bg-[#6845F5]/10 text-[#6845F5] border border-[#6845F5]/20">
-              <Cpu className="w-5 h-5" />
+              <Trophy className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-xs font-mono text-slate-400 uppercase tracking-wider">Official Domain</div>
-              <div className="text-sm font-bold text-white">Tech Competitions</div>
+              <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider">Official Domain</div>
+              <div className="text-sm font-bold text-white">Tech Hackathons</div>
             </div>
           </div>
         </div>

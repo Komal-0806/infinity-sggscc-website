@@ -8,8 +8,12 @@ import {
   Share2, 
   CheckCircle, 
   Info,
-  ExternalLink 
+  ExternalLink,
+  BookOpen,
+  Users,
+  AlertCircle
 } from 'lucide-react';
+import { societyInfo } from '../data/societyData';
 
 export default function EventDetailModal({ event, onClose, onOpenCommunityModal }) {
   const [copied, setCopied] = useState(false);
@@ -18,11 +22,13 @@ export default function EventDetailModal({ event, onClose, onOpenCommunityModal 
 
   const handleShare = () => {
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(window.location.origin + '#events');
+      navigator.clipboard.writeText(`${window.location.origin}/#events`);
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
     }
   };
+
+  const isCompleted = event.status === 'Completed';
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
@@ -60,32 +66,40 @@ export default function EventDetailModal({ event, onClose, onOpenCommunityModal 
             <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[#6845F5]/90 text-white shadow-md">
               {event.category}
             </span>
-            <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[#0B1020]/90 text-[#55A6AC] border border-[#55A6AC]/40">
-              {event.statusBadge}
+            <span className={`px-3 py-1 rounded-full text-xs font-mono font-semibold backdrop-blur-md border ${
+              isCompleted
+                ? 'bg-slate-800/90 text-slate-300 border-slate-700'
+                : 'bg-[#0B1020]/90 text-[#55A6AC] border-[#55A6AC]/40'
+            }`}>
+              {event.statusBadge || event.status}
             </span>
           </div>
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 sm:p-8 space-y-6">
+        <div className="p-6 sm:p-8 space-y-6 max-h-[70vh] overflow-y-auto">
           <div>
             <h3 id="event-modal-title" className="text-2xl sm:text-3xl font-extrabold text-white font-display mb-3">
               {event.title}
             </h3>
 
             {/* Quick Metadata Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 rounded-xl bg-[#0B1020] border border-slate-800 text-xs font-mono text-slate-300">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 rounded-xl bg-[#0B1020] border border-slate-800 text-xs font-mono text-slate-300">
               <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-[#55A6AC]" />
-                <span>{event.date}</span>
+                <Calendar className="w-4 h-4 text-[#55A6AC] shrink-0" />
+                <span>Date: {event.dateTime}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-[#6845F5]" />
-                <span>{event.duration}</span>
+                <Clock className="w-4 h-4 text-[#6845F5] shrink-0" />
+                <span>Deadline: {event.registrationDeadline}</span>
               </div>
               <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-[#E32655]" />
-                <span>{event.mode}</span>
+                <MapPin className="w-4 h-4 text-[#E32655] shrink-0" />
+                <span>Venue: {event.venue}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Users className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Format: {event.mode}</span>
               </div>
             </div>
           </div>
@@ -100,41 +114,40 @@ export default function EventDetailModal({ event, onClose, onOpenCommunityModal 
             </p>
           </div>
 
-          {/* Agenda / Schedule Outline */}
-          {event.agenda && event.agenda.length > 0 && (
+          {/* Eligibility */}
+          {event.eligibility && (
+            <div className="p-3.5 rounded-xl bg-[#0B1020]/70 border border-slate-800 text-xs text-slate-300">
+              <span className="font-mono text-[#55A6AC] font-semibold uppercase block mb-1">
+                Eligibility:
+              </span>
+              <span>{event.eligibility}</span>
+            </div>
+          )}
+
+          {/* Rules and Requirements */}
+          {event.rules && event.rules.length > 0 && (
             <div>
-              <h4 className="text-xs font-mono uppercase text-[#55A6AC] tracking-wider mb-2.5 font-semibold">
-                Event Agenda & Session Flow
+              <h4 className="text-xs font-mono uppercase text-[#E32655] tracking-wider mb-2.5 font-semibold flex items-center gap-1.5">
+                <BookOpen className="w-4 h-4" />
+                <span>Rules & Guidelines</span>
               </h4>
               <div className="space-y-2">
-                {event.agenda.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300 p-2.5 rounded-lg bg-[#0B1020]/70 border border-slate-800/80">
-                    <span className="font-mono text-[#6845F5] font-bold">Phase 0{idx + 1}:</span>
-                    <span>{item}</span>
+                {event.rules.map((rule, idx) => (
+                  <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300 p-2.5 rounded-lg bg-[#0B1020]/60 border border-slate-800/80">
+                    <span className="font-mono text-[#6845F5] font-bold">Rule {idx + 1}:</span>
+                    <span>{rule}</span>
                   </div>
                 ))}
               </div>
             </div>
           )}
 
-          {/* Prerequisites */}
-          {event.prerequisites && (
-            <div className="p-3.5 rounded-xl bg-[#0B1020]/60 border border-slate-800 text-xs text-slate-300">
-              <span className="font-mono text-[#E32655] font-semibold uppercase">Eligibility / Requirements: </span>
-              <span>{event.prerequisites}</span>
-            </div>
-          )}
-
-          {/* Authenticity Disclaimer Note */}
+          {/* Authenticity notice */}
           <div className="flex items-start gap-2 p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-[11px] font-mono text-slate-400">
             <Info className="w-4 h-4 text-[#55A6AC] shrink-0 mt-0.5" />
-            <div>
-              {event.isVerified ? (
-                <span>Official event domain verified from society records. Registration dates adhere to the academic semester schedule.</span>
-              ) : (
-                <span>Proposed workshop module awaiting upcoming semester scheduling announcement. No dates are fabricated.</span>
-              )}
-            </div>
+            <span>
+              Official event domain verified from society records. Registration dates adhere strictly to the academic semester schedule.
+            </span>
           </div>
 
           {/* Modal Footer Actions */}
@@ -148,7 +161,7 @@ export default function EventDetailModal({ event, onClose, onOpenCommunityModal 
               <span>{copied ? 'Link Copied to Clipboard!' : 'Share Event'}</span>
             </button>
 
-            <div className="flex items-center gap-2 w-full sm:w-auto">
+            <div className="flex items-center gap-2.5 w-full sm:w-auto">
               <button
                 onClick={onClose}
                 type="button"
@@ -156,16 +169,36 @@ export default function EventDetailModal({ event, onClose, onOpenCommunityModal 
               >
                 Close
               </button>
-              <button
-                onClick={() => {
-                  onClose();
-                  onOpenCommunityModal();
-                }}
-                type="button"
-                className="w-full sm:w-auto px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-[#3020A5] via-[#6845F5] to-[#E32655] shadow-md shadow-[#6845F5]/30 hover:shadow-lg transition-all"
-              >
-                Society Inquiries & Signups
-              </button>
+
+              {/* Functional Registration Action */}
+              {event.registrationUrl ? (
+                <a
+                  href={event.registrationUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-[#3020A5] via-[#6845F5] to-[#E32655] shadow-md shadow-[#6845F5]/30 hover:shadow-lg transition-all"
+                >
+                  <span>Register for Event</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              ) : isCompleted ? (
+                <button
+                  disabled
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl text-xs font-semibold text-slate-500 bg-slate-800/50 border border-slate-700/50 cursor-not-allowed"
+                >
+                  Event Concluded
+                </button>
+              ) : (
+                <a
+                  href={societyInfo.socials.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-[#3020A5] via-[#6845F5] to-[#E32655] shadow-md shadow-[#6845F5]/30 hover:shadow-lg transition-all"
+                >
+                  <span>Registration Updates on Instagram</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              )}
             </div>
           </div>
 
